@@ -1,4 +1,4 @@
-describe('template spec', () => {
+describe('create and view a todo', () => {
   const dataTestId = id => `[data-testid="${id}"]`
 
   it('creates a todo and marks it as done', () => {
