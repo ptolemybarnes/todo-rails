@@ -3,6 +3,10 @@ import TodoBoard from './TodoBoard';
 import CreateTodo from './CreateTodo';
 import { v4 as uuidv4 } from 'uuid';
 
+const PATHS = {
+  todos_path: '/todos'
+}
+
 const toggleDoneState = (todo) => {
   return { ...todo, isDone: !todo.isDone }
 }
@@ -11,7 +15,7 @@ const App = () => {
   const [todos, setTodosState] = useState({})
 
   useEffect(() => {
-    fetch('/todos')
+    fetch(PATHS.todos_path)
       .then(response => response.json())
       .then(todos => setTodosState(todos))
   }, []);

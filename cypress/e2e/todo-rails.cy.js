@@ -1,8 +1,15 @@
 describe('template spec', () => {
-  it('creates a todo and marks it as done', () => {
-    cy.visit('http://localhost:3000')
+  const dataTestId = id => `[data-testid="${id}"]`
 
-    cy.get('input[type="text"]').type('Bake birthday cake{enter}')
-    cy.get('[data-cy="todos"]').contains('Bake birthday cake')
+  it('creates a todo and marks it as done', () => {
+    const home = 'http://localhost:3000'
+    cy.visit(home)
+
+    cy.get(dataTestId('new-todo-input')).type('Bake birthday cake{enter}')
+    cy.get(dataTestId('todos')).contains('Bake birthday cake')
+
+    // ensure new todo is still there after refresh
+    cy.visit(home)
+    cy.get(dataTestId('todos')).contains('Bake birthday cake')
   })
 })

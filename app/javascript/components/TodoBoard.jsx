@@ -9,7 +9,7 @@ const TodoEntry = ({ description, isDone, updateTodo }) => (
 
 const TodoBoard = ({ todos, updateTodo }) => {
   return (
-    <ul data-cy="todos">
+    <ul data-testid="todos">
       {
         Object.values(todos).map(({ description, isDone, uuid }) => {
           return (
