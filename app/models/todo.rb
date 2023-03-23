@@ -12,6 +12,4 @@ class Todo
     @uuid = uuid
     @isDone = isDone
   end
-
-
 end

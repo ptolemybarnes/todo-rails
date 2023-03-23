@@ -11,7 +11,18 @@ const toggleDoneState = (todo) => {
   return { ...todo, isDone: !todo.isDone }
 }
 
-const App = () => {
+const persistNewTodo = (newTodo, authenticationToken) => {
+  fetch(PATHS.todos_path, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      'X-CSRF-Token': authenticationToken
+    },
+    body: JSON.stringify(newTodo)
+  })
+}
+
+const App = ({ authenticationToken }) => {
   const [todos, setTodosState] = useState({})
 
   useEffect(() => {
@@ -27,8 +38,9 @@ const App = () => {
   }
 
   const createTodo = ({ description }) => {
-    const newTodo = { description, uuid: uuidv4(), isDone: false }
-    setTodosState({ ...todos, [newTodo.uuid]: newTodo })
+    const newTodo = { description, uuid: uuidv4(), isDone: false };
+    setTodosState({ ...todos, [newTodo.uuid]: newTodo });
+    persistNewTodo(newTodo, authenticationToken);
   }
 
   return (
