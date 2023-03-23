@@ -4,7 +4,7 @@ import TodoBoard from './TodoBoard';
 const todos = [
   {
     description: 'feed cat',
-    isDone: false,
+    isDone: true,
   },
   {
     description: 'bury treasure',
@@ -14,7 +14,7 @@ const todos = [
 
 const App = () => {
   return (
-    <TodoBoard todos={todos} />
+    <TodoBoard todos={todos} updateTodo={() => {}} />
   )
 }
 

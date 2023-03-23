@@ -5,7 +5,7 @@
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets",
     "watch": "esbuild app/javascript/*.* --watch --bundle --outdir=app/assets/builds --loader:.js=jsx",
     "test": "jest",
-    "lint": "./node_modules/eslint/bin/eslint.js ./app"
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "esbuild": "^0.17.12",
@@ -19,6 +19,7 @@
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
     "babel-jest": "^29.5.0",
+    "cypress": "^12.8.1",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
     "prop-types": "^15.8.1"

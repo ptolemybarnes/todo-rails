@@ -22,6 +22,5 @@ test('updates a todo when checked', async () => {
 
   await user.click(screen.getByText(todo.description))
 
-
   expect(updateTodo).toHaveBeenCalledWith(todo.id)
 });
