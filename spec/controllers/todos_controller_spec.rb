@@ -2,24 +2,27 @@ require 'rails_helper'
 require 'json'
 
 describe TodosController, type: :request do
-  it "fetches all todos" do
+  it "fetches todos" do
     get '/todos'
 
     todos = JSON.parse(response.body)
     expect(response).to be_ok
 
-    expect(todos).to eq({
-      "12321" => {
-        "description" => "feed cat",
-        "id" => "12321",
-        "isDone"=> true
-      },
-      "5325423" => {
-        "description" => "bury treasure",
-        "id" => "5325423",
-        "isDone" => false
-      }
-    })
+    expect(todos.values).to match_array([
+      a_hash_including("description" => 'bury treasure'),
+      a_hash_including("description" => 'feed cat'),
+    ])
+  end
+
+  it "todos are keyed by uuid" do
+    get '/todos'
+
+    todos = JSON.parse(response.body)
+    expect(response).to be_ok
+
+    todos.keys.each do |id|
+      expect(id.length).to be(36) # length of uuid
+    end
   end
 
   it "creates a todo, which is persisted" do

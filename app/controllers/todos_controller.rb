@@ -1,33 +1,23 @@
 require 'json'
-require 'securerandom'
+require 'pry'
 
 class TodosController < ActionController::Base
-  TODOS = {
-    "12321": {
-      description: 'feed cat',
-      isDone: true,
-      id: "12321"
-    },
-    "5325423": {
-      description: 'bury treasure',
-      isDone: false,
-      id: "5325423"
-    }
-  }
+  TODOS = [
+    Todo.new('feed cat'),
+    Todo.new('bury treasure')
+  ].reduce({}) do |collection, todo|
+    collection.merge({ todo.uuid => todo})
+  end
 
   def index
-    puts TODOS
-    render json: TODOS
+    render json: TODOS.to_json
   end
 
   def create
-    stuff = JSON.parse(request.body.read)
-    new_todo = {
-      id: SecureRandom.hex,
-      isDone: false
-    }.merge(stuff)
+    parameters = JSON.parse(request.body.read)
+    new_todo = Todo.new(parameters.fetch("description"))
 
-    TODOS[new_todo[:id]] = new_todo
+    TODOS[new_todo.uuid] = new_todo
 
     render json: {}
   end
