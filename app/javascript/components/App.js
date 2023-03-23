@@ -1,3 +1,10 @@
 import React from 'react';
-const HelloMessage = ({ name }) => <h1>Hello, {name}!</h1>;
-export default HelloMessage;
+import TodoBoard from './TodoBoard';
+
+const App = () => {
+  return (
+    <TodoBoard />
+  )
+}
+
+export default App;
