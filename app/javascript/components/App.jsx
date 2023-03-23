@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TodoBoard from './TodoBoard';
+import CreateTodo from './CreateTodo';
+import { v4 as uuidv4 } from 'uuid';
 
 const toggleDoneState = (todo) => {
   return { ...todo, isDone: !todo.isDone }
@@ -20,8 +22,16 @@ const App = () => {
     setTodosState({ ...todos, [uuid]: newTodo })
   }
 
+  const createTodo = ({ description }) => {
+    const newTodo = { description, uuid: uuidv4(), isDone: false }
+    setTodosState({ ...todos, [newTodo.uuid]: newTodo })
+  }
+
   return (
-    <TodoBoard todos={todos} updateTodo={updateTodo} />
+    <div id="container">
+      <CreateTodo createTodo={createTodo} />
+      <TodoBoard todos={todos} updateTodo={updateTodo} />
+    </div>
   )
 }
 

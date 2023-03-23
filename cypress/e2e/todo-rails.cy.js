@@ -1,8 +1,8 @@
 describe('template spec', () => {
-  it('passes', () => {
+  it('creates a todo and marks it as done', () => {
     cy.visit('http://localhost:3000')
 
-    cy.get('input[type="checkbox"]').first().check()
-    cy.get('input[type="checkbox"]').should('be.checked')
+    cy.get('input[type="text"]').type('Bake birthday cake{enter}')
+    cy.get('[data-cy="todos"]').contains('Bake birthday cake')
   })
 })

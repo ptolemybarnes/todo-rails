@@ -9,31 +9,21 @@ const TodoEntry = ({ description, isDone, updateTodo }) => (
 
 const TodoBoard = ({ todos, updateTodo }) => {
   return (
-    <div className='container'>
-      <form>
-        <label>
-          New todo:
-          <input type="text" name="new-todo" />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-
-      <ul>
-        {
-          Object.values(todos).map(({ description, isDone, uuid }) => {
-            return (
-              <li key={uuid}>
-                <TodoEntry
-                  description={description}
-                  isDone={isDone}
-                  updateTodo={() => updateTodo(uuid)}
-                />
-              </li>
-            )
-          })
-        }
-      </ul>
-    </div>
+    <ul data-cy="todos">
+      {
+        Object.values(todos).map(({ description, isDone, uuid }) => {
+          return (
+            <li key={uuid}>
+              <TodoEntry
+                description={description}
+                isDone={isDone}
+                updateTodo={() => updateTodo(uuid)}
+              />
+            </li>
+          )
+        })
+      }
+    </ul>
   )
 }
 
