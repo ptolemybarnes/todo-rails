@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 
 const TodoEntry = ({ description, isDone, updateTodo }) => (
   <label>
@@ -21,7 +20,7 @@ const TodoBoard = ({ todos, updateTodo }) => {
 
       <ul>
         {
-          todos.map(({ description, isDone, id }) => {
+          Object.values(todos).map(({ description, isDone, id }) => {
             return (
               <li key={id}>
                 <TodoEntry
