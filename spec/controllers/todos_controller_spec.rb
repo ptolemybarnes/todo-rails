@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'json'
 
 describe TodosController, type: :request do
-  it "should be successful" do
+  it "fetches all todos" do
     get '/todos'
 
     todos = JSON.parse(response.body)
@@ -20,5 +20,17 @@ describe TodosController, type: :request do
         "isDone" => false
       }
     })
+  end
+
+  it "creates a todo, which is persisted" do
+    new_todo = { description: 'new todo' }
+    post '/todos', params: new_todo.to_json, headers: { 'CONTENT_TYPE' => 'application/json' }
+
+    get '/todos'
+
+    todos = JSON.parse(response.body)
+    created_todo = todos.values.find {|todo| new_todo[:description] == todo["description"] }
+
+    expect(created_todo).to be_present
   end
 end

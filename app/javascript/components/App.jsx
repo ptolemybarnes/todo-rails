@@ -7,11 +7,13 @@ const toggleDoneState = (todo) => {
 
 const App = () => {
   const [todos, setTodosState] = useState({})
+
   useEffect(() => {
     fetch('/todos')
       .then(response => response.json())
       .then(todos => setTodosState(todos))
   }, []);
+
   const updateTodo = (id) => {
     const todo = todos[id];
     const newTodo = toggleDoneState(todo);
