@@ -8,3 +8,5 @@ bundle exec rspec    # runs ruby tests
 npm run test         # runs javascript tests
 npm run cypress:run  # runs cypress tests
 ```
+
+Point your browser to [http://localhost:3000](http://localhost:3000) to view the app.
