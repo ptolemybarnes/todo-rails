@@ -44,7 +44,8 @@ const App = ({ authenticationToken }) => {
   }
 
   return (
-    <div id="container">
+    <div className="container">
+      <h1>Todo</h1>
       <CreateTodo createTodo={createTodo} />
       <TodoBoard todos={todos} updateTodo={updateTodo} />
     </div>
