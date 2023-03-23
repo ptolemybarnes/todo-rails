@@ -1,9 +1,10 @@
 import React from 'react'
-import { fireEvent, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom'
 import TodoBoard from '../../../app/javascript/components/TodoBoard.js'
 
 test('adds 1 + 2 to equal 3', () => {
-  const component = render(<TodoBoard />);
+  const { getByText } = render(<TodoBoard />);
 
-  // console.log(component.text())
+  expect(getByText('Hi')).toHaveTextContent('Hi')
 });
