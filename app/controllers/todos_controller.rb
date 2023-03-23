@@ -2,8 +2,8 @@ require 'json'
 
 class TodosController < ActionController::Base
   TODOS = [
-    Todo.new('feed cat'),
-    Todo.new('bury treasure')
+    Todo.new(description: 'feed cat'),
+    Todo.new(description: 'bury treasure')
   ].reduce({}) do |collection, todo|
     collection.merge({ todo.uuid => todo})
   end
@@ -14,7 +14,11 @@ class TodosController < ActionController::Base
 
   def create
     parameters = JSON.parse(request.body.read)
-    new_todo = Todo.new(parameters.fetch("description"))
+    new_todo = Todo.new(
+      description: parameters.fetch("description"),
+      uuid: parameters.fetch("uuid"),
+      isDone: parameters.fetch("isDone")
+    )
 
     TODOS[new_todo.uuid] = new_todo
 

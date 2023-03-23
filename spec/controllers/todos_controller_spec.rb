@@ -2,6 +2,8 @@ require 'rails_helper'
 require 'json'
 
 describe TodosController, type: :request do
+  include Rails.application.routes.url_helpers
+
   it "fetches todos" do
     get '/todos'
 
@@ -15,7 +17,7 @@ describe TodosController, type: :request do
   end
 
   it "todos are keyed by uuid" do
-    get '/todos'
+    get todos_path
 
     todos = JSON.parse(response.body)
     expect(response).to be_ok
@@ -26,14 +28,18 @@ describe TodosController, type: :request do
   end
 
   it "creates a todo, which is persisted" do
-    new_todo = { description: 'new todo' }
+    new_todo = Todo.new(
+      description: 'new todo',
+      uuid: SecureRandom.uuid,
+      isDone: false
+    )
+
     post '/todos', params: new_todo.to_json, headers: { 'CONTENT_TYPE' => 'application/json' }
 
-    get '/todos'
+    get todos_path
 
     todos = JSON.parse(response.body)
-    created_todo = todos.values.find {|todo| new_todo[:description] == todo["description"] }
 
-    expect(created_todo).to be_present
+    expect(todos).to have_key(new_todo.uuid)
   end
 end
