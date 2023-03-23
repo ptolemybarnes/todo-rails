@@ -1,21 +1,11 @@
 require 'securerandom'
-require 'pry'
 
 class Todo
-  attr_reader :description, :done, :uuid
+  attr_reader :description, :isDone, :uuid
 
   def initialize(description)
     @description = description
     @uuid = SecureRandom.uuid
-    @done = false
+    @isDone = false
   end
-
-  def to_json
-    {
-      uuid: uuid,
-      description: description,
-      isDone: done
-    }.to_json
-  end
-
 end

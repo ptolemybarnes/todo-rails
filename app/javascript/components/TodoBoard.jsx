@@ -20,13 +20,13 @@ const TodoBoard = ({ todos, updateTodo }) => {
 
       <ul>
         {
-          Object.values(todos).map(({ description, isDone, id }) => {
+          Object.values(todos).map(({ description, isDone, uuid }) => {
             return (
-              <li key={id}>
+              <li key={uuid}>
                 <TodoEntry
                   description={description}
                   isDone={isDone}
-                  updateTodo={() => updateTodo(id)}
+                  updateTodo={() => updateTodo(uuid)}
                 />
               </li>
             )

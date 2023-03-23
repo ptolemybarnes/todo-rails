@@ -8,7 +8,7 @@ test('updates a todo when checked', async () => {
   const user = userEvent.setup()
   const updateTodo = jest.fn()
   const todo = {
-    id: 'wDwDq6',
+    uuid: 'wDwDq6',
     description: 'feed cat',
     isDone: false,
   }
@@ -22,5 +22,5 @@ test('updates a todo when checked', async () => {
 
   await user.click(screen.getByText(todo.description))
 
-  expect(updateTodo).toHaveBeenCalledWith(todo.id)
+  expect(updateTodo).toHaveBeenCalledWith(todo.uuid)
 });

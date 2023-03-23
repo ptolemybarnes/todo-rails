@@ -14,10 +14,10 @@ const App = () => {
       .then(todos => setTodosState(todos))
   }, []);
 
-  const updateTodo = (id) => {
-    const todo = todos[id];
+  const updateTodo = (uuid) => {
+    const todo = todos[uuid];
     const newTodo = toggleDoneState(todo);
-    setTodosState({ ...todos, [id]: newTodo })
+    setTodosState({ ...todos, [uuid]: newTodo })
   }
 
   return (
