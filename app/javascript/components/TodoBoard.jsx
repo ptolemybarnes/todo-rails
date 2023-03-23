@@ -2,19 +2,13 @@ import React from 'react';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const TodoEntry = ({ description, isDone }) => (
+const TodoEntry = ({ description, isDone, updateTodo }) => (
   <label>
-    { description } <input type="checkbox" checked={isDone}/>
+    { description } <input type="checkbox" checked={isDone} onChange={updateTodo}/>
   </label>
 )
 
-TodoBoard.propTypes = {
-  isDone: PropTypes.bool
-}
-
-const TodoBoard = () => {
-  dsadsa
-
+const TodoBoard = ({ todos, updateTodo }) => {
   return (
     <div className='container'>
       <form>
@@ -24,12 +18,21 @@ const TodoBoard = () => {
         </label>
         <input type="submit" value="Submit" />
       </form>
+
       <ul>
-        <li>
-          <TodoEntry description="Feed cat" isDone={false} />
-        </li>
-        <li>Bury treasure</li>
-        <li>Go for a run</li>
+        {
+          todos.map(({ description, isDone, id }) => {
+            return (
+              <li key={id}>
+                <TodoEntry
+                  description={description}
+                  isDone={isDone}
+                  updateTodo={() => updateTodo(id)}
+                />
+              </li>
+            )
+          })
+        }
       </ul>
     </div>
   )
