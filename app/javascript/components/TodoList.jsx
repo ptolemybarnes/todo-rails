@@ -13,7 +13,7 @@ const wrapInStrikeThroughIf = (description, isDone) => {
 
 const TodoEntry = ({ description, isDone, updateTodo }) => (
   <label>
-   { wrapInStrikeThroughIf(description, isDone) }<input type="checkbox" checked={isDone} onChange={updateTodo} className="form-check-input"/>
+    <input type="checkbox" checked={isDone} onChange={updateTodo} className="form-check-input"/><span className='ms-3'>{ wrapInStrikeThroughIf(description, isDone) }</span>
   </label>
 )
 
