@@ -2,7 +2,7 @@ import React from 'react'
 import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
-import TodoBoard from '../../../app/javascript/components/TodoBoard'
+import TodoList from '../../../app/javascript/components/TodoList'
 
 test('updates a todo when checked', async () => {
   const user = userEvent.setup()
@@ -17,7 +17,7 @@ test('updates a todo when checked', async () => {
   ]
 
   render(
-    <TodoBoard updateTodo={updateTodo} todos={todos}  />
+    <TodoList updateTodo={updateTodo} todos={todos}  />
   );
 
   await user.click(screen.getByText(todo.description))
@@ -37,7 +37,7 @@ test('a todo marked as done is struck through', async () => {
   ]
 
   render(
-    <TodoBoard updateTodo={() => {}} todos={todos}  />
+    <TodoList updateTodo={() => {}} todos={todos}  />
   );
 
   screen.getByTestId('todo-strikethrough')
@@ -55,7 +55,7 @@ test('a todo not marked as done is not struck through', async () => {
   ]
 
   render(
-    <TodoBoard updateTodo={() => {}} todos={todos}  />
+    <TodoList updateTodo={() => {}} todos={todos}  />
   );
 
   const struckThroughTodo = screen.queryByTestId('todo-strikethrough')

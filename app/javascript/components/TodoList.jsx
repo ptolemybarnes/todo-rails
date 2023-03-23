@@ -17,7 +17,7 @@ const TodoEntry = ({ description, isDone, updateTodo }) => (
   </label>
 )
 
-const TodoBoard = ({ todos, updateTodo }) => {
+const TodoList = ({ todos, updateTodo }) => {
   return (
     <ul className="list-group" data-testid="todos">
       {
@@ -37,4 +37,4 @@ const TodoBoard = ({ todos, updateTodo }) => {
   )
 }
 
-export default TodoBoard
+export default TodoList

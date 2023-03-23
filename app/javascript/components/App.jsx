@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import TodoBoard from './TodoBoard';
+import TodoList from './TodoList';
 import CreateTodo from './CreateTodo';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -47,7 +47,7 @@ const App = ({ authenticationToken }) => {
     <div className="container">
       <h1>Todo</h1>
       <CreateTodo createTodo={createTodo} />
-      <TodoBoard todos={todos} updateTodo={updateTodo} />
+      <TodoList todos={todos} updateTodo={updateTodo} />
     </div>
   )
 }
