@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+const isBlank = string => string.trim() === "";
+
 const CreateTodo = ({ createTodo }) => {
   const [inputFieldState, setInputFieldState] = useState("")
 
@@ -24,7 +26,7 @@ const CreateTodo = ({ createTodo }) => {
         </label>
       </div>
       <div className="mb-3">
-        <input className="btn btn-primary" data-testid="new-todo-submit" type="submit" value="Submit" onClick={onSubmit} />
+        <input className="btn btn-primary" data-testid="new-todo-submit" type="submit" value="Submit" onClick={onSubmit} disabled={isBlank(inputFieldState)} />
       </div>
     </form>
   )

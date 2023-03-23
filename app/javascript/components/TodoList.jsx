@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 
 const wrapInStrikeThroughIf = (description, isDone) => {
   if (isDone) {
@@ -11,13 +10,14 @@ const wrapInStrikeThroughIf = (description, isDone) => {
   }
 }
 
-const TodoEntry = ({ description, isDone, updateTodo }) => (
+const TodoEntry = ({ description, isDone, toggleDoneStatus }) => (
   <label>
-    <input type="checkbox" checked={isDone} onChange={updateTodo} className="form-check-input"/><span className='ms-3'>{ wrapInStrikeThroughIf(description, isDone) }</span>
+    <input type="checkbox" checked={isDone} onChange={toggleDoneStatus} className="form-check-input"/>
+    <span className='ms-3'>{ wrapInStrikeThroughIf(description, isDone) }</span>
   </label>
 )
 
-const TodoList = ({ todos, updateTodo }) => {
+const TodoList = ({ todos, toggleDoneStatus }) => {
   return (
     <ul className="list-group" data-testid="todos">
       {
@@ -27,7 +27,7 @@ const TodoList = ({ todos, updateTodo }) => {
               <TodoEntry
                 description={description}
                 isDone={isDone}
-                updateTodo={() => updateTodo(uuid)}
+                toggleDoneStatus={() => toggleDoneStatus(uuid)}
               />
             </li>
           )

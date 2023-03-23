@@ -31,7 +31,7 @@ const App = ({ authenticationToken }) => {
       .then(todos => setTodosState(todos))
   }, []);
 
-  const updateTodo = (uuid) => {
+  const toggleDoneState = (uuid) => {
     const todo = todos[uuid];
     const newTodo = toggleDoneState(todo);
     setTodosState({ ...todos, [uuid]: newTodo })
@@ -47,7 +47,7 @@ const App = ({ authenticationToken }) => {
     <div className="container">
       <h1>Todo</h1>
       <CreateTodo createTodo={createTodo} />
-      <TodoList todos={todos} updateTodo={updateTodo} />
+      <TodoList todos={todos} toggleDoneState={toggleDoneState} />
     </div>
   )
 }

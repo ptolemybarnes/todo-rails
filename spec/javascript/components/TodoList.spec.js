@@ -6,7 +6,7 @@ import TodoList from '../../../app/javascript/components/TodoList'
 
 test('updates a todo when checked', async () => {
   const user = userEvent.setup()
-  const updateTodo = jest.fn()
+  const toggleDoneStatus = jest.fn()
   const todo = {
     uuid: 'wDwDq6',
     description: 'feed cat',
@@ -17,16 +17,16 @@ test('updates a todo when checked', async () => {
   ]
 
   render(
-    <TodoList updateTodo={updateTodo} todos={todos}  />
+    <TodoList toggleDoneStatus={toggleDoneStatus} todos={todos}  />
   );
 
   await user.click(screen.getByText(todo.description))
 
-  expect(updateTodo).toHaveBeenCalledWith(todo.uuid)
+  expect(toggleDoneStatus).toHaveBeenCalledWith(todo.uuid)
 });
 
 test('a todo marked as done is struck through', async () => {
-  const updateTodo = jest.fn()
+  const toggleDoneStatus = jest.fn()
   const todo = {
     uuid: 'wDwDq6',
     description: 'feed cat',
@@ -37,14 +37,14 @@ test('a todo marked as done is struck through', async () => {
   ]
 
   render(
-    <TodoList updateTodo={() => {}} todos={todos}  />
+    <TodoList toggleDoneStatus={() => {}} todos={todos}  />
   );
 
   screen.getByTestId('todo-strikethrough')
 })
 
 test('a todo not marked as done is not struck through', async () => {
-  const updateTodo = jest.fn()
+  const toggleDoneStatus = jest.fn()
   const todo = {
     uuid: 'wDwDq6',
     description: 'feed cat',
@@ -55,7 +55,7 @@ test('a todo not marked as done is not struck through', async () => {
   ]
 
   render(
-    <TodoList updateTodo={() => {}} todos={todos}  />
+    <TodoList toggleDoneStatus={() => {}} todos={todos}  />
   );
 
   const struckThroughTodo = screen.queryByTestId('todo-strikethrough')
