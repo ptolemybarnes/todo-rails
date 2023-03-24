@@ -22,6 +22,6 @@ class TodosController < ActionController::Base
 
     TODOS[new_todo.uuid] = new_todo
 
-    render json: {}
+    head :no_content
   end
 end
