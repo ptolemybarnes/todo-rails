@@ -61,3 +61,24 @@ test('a todo not marked as done is not struck through', async () => {
   const struckThroughTodo = screen.queryByTestId('todo-strikethrough')
   expect(struckThroughTodo).toBeNull()
 })
+
+test('a todo can be deleted', async () => {
+  const deleteTodo = jest.fn()
+  const user = userEvent.setup()
+  const todo = {
+    uuid: 'wDwDq6',
+    description: 'feed cat',
+    isDone: false,
+  }
+  const todos = [
+    todo,
+  ]
+
+  render(
+    <TodoList deleteTodo={deleteTodo} toggleDoneState={() => {}} todos={todos}  />
+  );
+
+  await user.click(screen.getByTestId('todo-delete'))
+
+  expect(deleteTodo).toHaveBeenCalledWith(todo.uuid)
+})

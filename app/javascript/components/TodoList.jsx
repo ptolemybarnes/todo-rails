@@ -10,14 +10,15 @@ const wrapInStrikeThroughIf = (description, isDone) => {
   }
 }
 
-const TodoEntry = ({ description, isDone, toggleDoneState }) => (
+const TodoEntry = ({ description, isDone, toggleDoneState, deleteTodo }) => (
   <label>
     <input type="checkbox" checked={isDone} onChange={toggleDoneState} className="form-check-input"/>
     <span className='ms-3'>{ wrapInStrikeThroughIf(description, isDone) }</span>
+    <input type='button' value='X' data-testid='todo-delete' onClick={deleteTodo} />
   </label>
 )
 
-const TodoList = ({ todos, toggleDoneState }) => {
+const TodoList = ({ todos, toggleDoneState, deleteTodo }) => {
   return (
     <ul className="list-group" data-testid="todos">
       {
@@ -28,6 +29,7 @@ const TodoList = ({ todos, toggleDoneState }) => {
                 description={description}
                 isDone={isDone}
                 toggleDoneState={() => toggleDoneState(uuid)}
+                deleteTodo={() => deleteTodo(uuid)}
               />
             </li>
           )

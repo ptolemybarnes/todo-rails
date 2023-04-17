@@ -43,11 +43,17 @@ const App = ({ authenticationToken }) => {
     persistNewTodo(newTodo, authenticationToken);
   }
 
+  const deleteTodo = uuid => {
+    const newTodos = { ...todos }
+    delete newTodos[uuid]
+    setTodosState({ ...newTodos })
+  }
+
   return (
     <div className="container">
       <h1>Todo</h1>
       <CreateTodo createTodo={createTodo} />
-      <TodoList todos={todos} toggleDoneState={toggleDoneState} />
+      <TodoList todos={todos} toggleDoneState={toggleDoneState} deleteTodo={deleteTodo} />
     </div>
   )
 }
