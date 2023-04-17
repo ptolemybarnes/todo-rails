@@ -7,8 +7,8 @@ const PATHS = {
   todos_path: '/todos'
 }
 
-const toggleDoneState = (todo) => {
-  return { ...todo, isDone: !todo.isDone }
+const toggleState = (property, todo) => {
+  return { ...todo, [property]: !todo[property] }
 }
 
 const persistNewTodo = (newTodo, authenticationToken) => {
@@ -33,7 +33,7 @@ const App = ({ authenticationToken }) => {
 
   const toggleDoneState = (uuid) => {
     const todo = todos[uuid];
-    const newTodo = toggleDoneState(todo);
+    const newTodo = toggleState('isDone', todo);
     setTodosState({ ...todos, [uuid]: newTodo })
   }
 

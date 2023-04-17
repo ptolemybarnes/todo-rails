@@ -10,14 +10,14 @@ const wrapInStrikeThroughIf = (description, isDone) => {
   }
 }
 
-const TodoEntry = ({ description, isDone, toggleDoneStatus }) => (
+const TodoEntry = ({ description, isDone, toggleDoneState }) => (
   <label>
-    <input type="checkbox" checked={isDone} onChange={toggleDoneStatus} className="form-check-input"/>
+    <input type="checkbox" checked={isDone} onChange={toggleDoneState} className="form-check-input"/>
     <span className='ms-3'>{ wrapInStrikeThroughIf(description, isDone) }</span>
   </label>
 )
 
-const TodoList = ({ todos, toggleDoneStatus }) => {
+const TodoList = ({ todos, toggleDoneState }) => {
   return (
     <ul className="list-group" data-testid="todos">
       {
@@ -27,7 +27,7 @@ const TodoList = ({ todos, toggleDoneStatus }) => {
               <TodoEntry
                 description={description}
                 isDone={isDone}
-                toggleDoneStatus={() => toggleDoneStatus(uuid)}
+                toggleDoneState={() => toggleDoneState(uuid)}
               />
             </li>
           )
